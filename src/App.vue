@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { onMounted, ref, watch } from 'vue'
 import Input from './components/Input.vue'
 import Messages from './components/Messages.vue'
