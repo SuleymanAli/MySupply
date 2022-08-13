@@ -2,6 +2,7 @@
   <div class="input flex py-7 pl-7 pr-10 border-2 border-sky-200 rounded-md">
     <div class="input__main grow relative mr-4">
       <input
+        v-model="inputValue"
         type="text"
         class="border-2 border-gray-400 rounded-md p-3 pr-10 w-full"
       />
@@ -9,7 +10,10 @@
         <IconEuro />
       </span>
     </div>
-    <button class="input__cta bg-cyan-800 px-6 py-3 rounded-md text-white">
+    <button
+      @click.prevent="handleSubmit"
+      class="input__cta bg-cyan-800 px-6 py-3 rounded-md text-white"
+    >
       SEND
     </button>
   </div>
@@ -17,6 +21,13 @@
 
 <script lang="ts" setup>
 import IconEuro from './Icons/IconEuro.vue'
+import { ref } from 'vue'
+const emit = defineEmits(['send:price'])
+const inputValue = ref('')
+
+function handleSubmit() {
+  emit('send:price', inputValue.value)
+}
 </script>
 
 <style lang="scss" scoped>

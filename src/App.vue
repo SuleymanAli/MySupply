@@ -17,18 +17,12 @@
         :progressbar="progressBarStatus"
       />
       <!-- Input -->
-      <Input class="w-1/2" :class="{ hidden: progressBarStatus }" />
+      <Input
+        class="w-1/2"
+        :class="{ hidden: progressBarStatus }"
+        @send:price="handlePrice"
+      />
     </div>
-    <button
-      @click="
-        datas.push({
-          message: 'Hi',
-          bot: false,
-        })
-      "
-    >
-      send
-    </button>
   </div>
 </template>
 
@@ -76,13 +70,21 @@ watch(datas.value, () => {
 
 const checkLastMessage = () =>
   datas.value.findLast((c) => c?.requirePrice === true)
+
+/*  */
+const handlePrice = (value) => {
+  console.log('gel', value)
+  datas.value.push({
+    message: value,
+    bot: false,
+  })
+}
 </script>
 
 <style lang="scss" scoped>
 .homePage {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
 
   &__messageList {
     box-shadow: inset 0px -10px 10px 1px lightgrey;
