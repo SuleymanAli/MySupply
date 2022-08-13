@@ -20,6 +20,7 @@
       <Input
         class="w-1/2"
         :class="{ hidden: progressBarStatus }"
+        :progressBarStatus="progressBarStatus"
         @send:price="handlePrice"
       />
     </div>
@@ -34,7 +35,7 @@ import ProgressBar from './components/ProgressBar.vue'
 
 /* Progress Bar */
 const progressBarStatus = ref(false)
-function handleProgressBar() {
+function handleProgressBar(value) {
   progressBarStatus.value = !progressBarStatus.value
 }
 
@@ -73,11 +74,19 @@ const checkLastMessage = () =>
 
 /*  */
 const handlePrice = (value) => {
-  console.log('gel', value)
-  datas.value.push({
-    message: value,
-    bot: false,
-  })
+  if (value) {
+    datas.value.push({
+      message: value,
+      bot: false,
+    })
+  } else {
+    datas.value.push({
+      message: 'Please hurry',
+      bot: true,
+      requirePrice: true,
+    })
+  }
+  return value
 }
 </script>
 

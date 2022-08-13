@@ -21,13 +21,20 @@
 
 <script lang="ts" setup>
 import IconEuro from './Icons/IconEuro.vue'
-import { ref } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 const emit = defineEmits(['send:price'])
+const props = defineProps(['progressBarStatus'])
+const progressBarStatus = toRefs(props).progressBarStatus
+
 const inputValue = ref('')
 
 function handleSubmit() {
   emit('send:price', inputValue.value)
 }
+
+watch(progressBarStatus, () => {
+  if (!inputValue.value) emit('send:price', false)
+})
 </script>
 
 <style lang="scss" scoped>

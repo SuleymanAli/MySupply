@@ -23,7 +23,7 @@ onMounted(() => {
 function incrementTime() {
   time.value = time.value - 1
   if (time.value === 0) {
-    emit('toggle:ProgressBar', false)
+    emit('toggle:ProgressBar', true)
     isRunning.value = false
   }
 }
