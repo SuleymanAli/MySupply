@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import IconEuro from './Icons/IconEuro.vue'
 import { ref, toRefs, watch } from 'vue'
 const emit = defineEmits(['send:price'])
